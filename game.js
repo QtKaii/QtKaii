@@ -473,8 +473,9 @@ class PocketDoomGame {
     // Cleanup
     destroy() {
         // Stop game loop
-        if (this.gameLoop) {
+        if (this.gameLoop !== undefined) {
             cancelAnimationFrame(this.gameLoop);
+            this.gameLoop = undefined;
         }
         
         // Clean up event listeners
