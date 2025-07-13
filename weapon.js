@@ -171,7 +171,7 @@ class WeaponSystem {
         this.muzzleFlash.timeLeft = this.muzzleFlash.duration;
         
         // Play sound
-        window.gameInstance.audio.playSound('shoot');
+        window.gameInstance.audio.playSound(weapon.sound);
         
         return true;
     }
