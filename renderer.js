@@ -62,7 +62,9 @@ class Renderer {
         // Image smoothing off for pixelated look
         this.ctx.imageSmoothingEnabled = false;
         
-        console.log(`Canvas resized: ${this.width}x${this.height}, DPR: ${dpr}, Quality: ${this.renderQuality}`);
+        if (this.debug) {
+            console.log(`Canvas resized: ${this.width}x${this.height}, DPR: ${dpr}, Quality: ${this.renderQuality}`);
+        }
     }
     
     generateTextures() {
