@@ -39,6 +39,12 @@ class Renderer {
         this.width = this.canvas.clientWidth;
         this.height = this.canvas.clientHeight;
         
+        // Ensure we have valid dimensions
+        if (this.width === 0 || this.height === 0) {
+            this.width = Math.max(this.width, 375); // Fallback minimum width
+            this.height = Math.max(this.height, 667); // Fallback minimum height
+        }
+        
         // Adjust canvas resolution based on device pixel ratio and quality setting
         const dpr = window.devicePixelRatio || 1;
         const effectiveRatio = dpr * this.renderQuality;
@@ -46,6 +52,8 @@ class Renderer {
         this.canvas.width = this.width * effectiveRatio;
         this.canvas.height = this.height * effectiveRatio;
         
+        // Reset transform before scaling to prevent accumulation
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.ctx.scale(effectiveRatio, effectiveRatio);
         
         // Calculate ray count based on width
@@ -53,6 +61,8 @@ class Renderer {
         
         // Image smoothing off for pixelated look
         this.ctx.imageSmoothingEnabled = false;
+        
+        console.log(`Canvas resized: ${this.width}x${this.height}, DPR: ${dpr}, Quality: ${this.renderQuality}`);
     }
     
     generateTextures() {

@@ -31,6 +31,10 @@ body {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    touch-action: none;
+    /* Ensure canvas is visible on mobile */
+    background: #000;
+    z-index: 1;
 }
 
 /* HUD Styles */
@@ -135,8 +139,8 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    background: rgba(100, 100, 100, 0.3);
-    border: 3px solid rgba(255, 255, 255, 0.5);
+    background: rgba(100, 100, 100, 0.6);
+    border: 3px solid rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     pointer-events: auto;
     touch-action: none;

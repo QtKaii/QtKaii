@@ -107,6 +107,13 @@ class UISystem {
         if (isMobile) {
             this.elements.touchControls.style.display = 'block';
             document.body.classList.add('mobile');
+            
+            // Force canvas resize on mobile detection
+            if (window.gameInstance && window.gameInstance.renderer) {
+                setTimeout(() => {
+                    window.gameInstance.renderer.resize();
+                }, 100);
+            }
         } else {
             this.elements.touchControls.style.display = 'none';
             document.body.classList.add('desktop');
