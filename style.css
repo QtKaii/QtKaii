@@ -1,0 +1,426 @@
+/* Pocket DOOM 2.0 Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* HUD Styles */
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+    padding: 20px;
+}
+
+#healthBar, #armorBar {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 30px;
+}
+
+#healthBar {
+    left: 20px;
+}
+
+#armorBar {
+    left: 240px;
+}
+
+.bar-label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+.bar-container {
+    width: 150px;
+    height: 20px;
+    background: rgba(50, 50, 50, 0.8);
+    border: 2px solid #fff;
+    position: relative;
+    display: inline-block;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #00ff00;
+    transition: width 0.3s ease;
+}
+
+#armorFill {
+    background: #0088ff;
+}
+
+.bar-value {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+#weaponInfo {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
+}
+
+#currentWeapon {
+    font-size: 18px;
+    color: #ffff00;
+    margin-bottom: 5px;
+}
+
+#ammoCount {
+    font-size: 24px;
+    color: #fff;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: #ffff00;
+}
+
+/* Touch Controls */
+#touchControls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    pointer-events: none;
+    z-index: 15;
+    display: none;
+}
+
+.joystick {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(100, 100, 100, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: auto;
+    touch-action: none;
+}
+
+#moveJoystick {
+    bottom: 50px;
+    left: 30px;
+}
+
+#lookJoystick {
+    bottom: 50px;
+    right: 30px;
+}
+
+.joystick-handle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease;
+}
+
+.touch-button {
+    position: absolute;
+    padding: 15px 20px;
+    background: rgba(100, 100, 100, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 8px;
+    pointer-events: auto;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+#shootButton {
+    bottom: 80px;
+    right: 150px;
+}
+
+#weaponButton {
+    bottom: 30px;
+    right: 150px;
+}
+
+.touch-button:active {
+    background: rgba(150, 150, 150, 0.9);
+    transform: scale(0.95);
+}
+
+/* Menu Styles */
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid #fff;
+    padding: 40px;
+    text-align: center;
+    z-index: 20;
+    min-width: 300px;
+}
+
+.menu h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ff0000;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: #333;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu button:hover, .menu button:focus {
+    background: #555;
+    color: #ffff00;
+}
+
+.menu button:active {
+    transform: scale(0.98);
+}
+
+.help-content {
+    text-align: left;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.help-content h3 {
+    color: #00ff00;
+    margin: 15px 0 10px 0;
+}
+
+.help-content p {
+    margin: 5px 0;
+    padding-left: 10px;
+}
+
+/* Loading Screen */
+#loadingScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #000, #333);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+#loadingScreen h1 {
+    font-size: 48px;
+    color: #ff0000;
+    text-shadow: 4px 4px 8px #000;
+    margin-bottom: 30px;
+    animation: pulse 2s infinite;
+}
+
+#loadingScreen p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 20px;
+    background: #333;
+    border: 2px solid #fff;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#loadingFill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0000, #ffff00);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+#startBtn {
+    padding: 20px 40px;
+    background: #ff0000;
+    border: 3px solid #fff;
+    color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#startBtn:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #touchControls {
+        display: block;
+    }
+    
+    #hud {
+        padding: 10px;
+    }
+    
+    #healthBar, #armorBar {
+        width: 150px;
+        bottom: 220px;
+    }
+    
+    #armorBar {
+        left: 170px;
+    }
+    
+    .bar-container {
+        width: 100px;
+    }
+    
+    #weaponInfo {
+        bottom: 220px;
+        right: 10px;
+    }
+    
+    #score {
+        top: 10px;
+        right: 10px;
+        font-size: 16px;
+    }
+    
+    .menu {
+        min-width: 250px;
+        padding: 30px;
+    }
+    
+    .menu h2 {
+        font-size: 24px;
+    }
+    
+    #loadingScreen h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    #healthBar, #armorBar {
+        width: 120px;
+        font-size: 10px;
+    }
+    
+    .bar-container {
+        width: 80px;
+        height: 15px;
+    }
+    
+    .bar-value {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    
+    #currentWeapon {
+        font-size: 14px;
+    }
+    
+    #ammoCount {
+        font-size: 18px;
+    }
+    
+    .joystick {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .joystick-handle {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .touch-button {
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Performance optimizations */
+#gameCanvas {
+    will-change: auto;
+    transform: translateZ(0);
+}
+
+.joystick-handle {
+    will-change: transform;
+}
+
+.bar-fill {
+    will-change: width;
+}
