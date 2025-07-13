@@ -71,9 +71,9 @@ class Player {
         
         document.addEventListener('pointerlockchange', () => {
             if (document.pointerLockElement === canvas) {
-                document.addEventListener('mousemove', this.onPointerMove.bind(this));
+                document.addEventListener('mousemove', this.boundPointerMove);
             } else {
-                document.removeEventListener('mousemove', this.onPointerMove.bind(this));
+                document.removeEventListener('mousemove', this.boundPointerMove);
             }
         });
     }
